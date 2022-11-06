@@ -89,7 +89,7 @@ public class MainMenu {
                     try (Session session = sessionFactory.openSession()) {
                         session.beginTransaction();
                         List<Printable> printableList = session.createQuery("from Printable").getResultList(); // hql
-                        session.getTransaction().commit();
+                        session.close();
                         library = new Library(printableList);
                         Library.printLibrary(library);
                         break;
@@ -130,6 +130,8 @@ public class MainMenu {
                     }
                 case 5:
                     System.err.print("Thank you for using library. Good bye!");
+                    scInt.close();
+                    scLine.close();
                     return;
                 default:
                     System.out.println("Chosen option can not be performed. Please insert the number within 1-5. \n");
