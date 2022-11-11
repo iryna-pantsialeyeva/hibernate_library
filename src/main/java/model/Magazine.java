@@ -11,15 +11,8 @@ public class Magazine extends Printable {
     @Setter
     private int issue;
 
-    public Magazine(String name, Publisher publisher, int issue) {
-        super(name, publisher);
+    public Magazine(String name, int issue) {
+        super(name);
         this.issue = issue;
-    }
-
-    @Override
-    public String toString() {
-        return "Magazine{" + super.toString() +
-                "issue=" + issue +
-                "}";
     }
 }
