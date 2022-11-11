@@ -12,8 +12,8 @@ public class Newspaper extends Printable {
     @Setter
     private String type;
 
-    public Newspaper(String name, Publisher publisher, String type) {
-        super(name, publisher);
+    public Newspaper(String name, String type) {
+        super(name);
         this.type = type;
     }
 

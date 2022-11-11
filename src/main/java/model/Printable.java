@@ -3,13 +3,15 @@ package model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Embedded;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Data
 @NoArgsConstructor
@@ -20,11 +22,11 @@ public abstract class Printable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     private String name;
-    @Embedded
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     private Publisher publisher;
 
-    public Printable(String name, Publisher publisher) {
+    public Printable(String name) {
         this.name = name;
-        this.publisher = publisher;
     }
 }
